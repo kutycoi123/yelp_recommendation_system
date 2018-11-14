@@ -14,7 +14,7 @@ def read_and_write_file(json_file_path, csv_file_path, column_names):
     with open(csv_file_path, 'w') as fout:
         csv_file = csv.writer(fout)
         csv_file.writerow(list(column_names))
-        with open(json_file_path) as fin:
+        with open(json_file_path, encoding="utf-8") as fin:
             for line in fin:
                 line_contents = json.loads(line)
                 #print(column_names, line_contents)
@@ -23,7 +23,7 @@ def read_and_write_file(json_file_path, csv_file_path, column_names):
 def get_superset_of_column_names_from_file(json_file_path):
     """Read in the json dataset file and return the superset of column names."""
     column_names = set()
-    with open(json_file_path) as fin:
+    with open(json_file_path, encoding="utf-8") as fin:
         for line in fin:
             line_contents = json.loads(line)
             column_names.update(
