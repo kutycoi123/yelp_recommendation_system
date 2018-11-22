@@ -14,4 +14,4 @@ Pre-process dataset:
 	+ python update_user_DB.py
 	+ python make_table.py
 	+ python query_v2.py
-- Now we have a file named review.csv. In this file, there are totally 28004 unique users, 44843 unique businesses and 100000 reviews. 
+- Now we have a file named review.csv. In this file, there are totally 1500 unique users, 3000 unique businesses and 100000 reviews. 

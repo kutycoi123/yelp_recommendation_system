@@ -1,12 +1,13 @@
 import sqlite3
 import pandas as pd
 import time
+import csv
 import os
 
 def BusinessCmp(b):
-    return unique_businesses[b]
+    return unique_businesses[b['id']]
 def UsersCmp(b):
-    return unique_users[b]
+    return unique_users[b['id']]
 def Find(userID, businessID, response):
     for u in response:
         if (u[0] == userID and u[1] == businessID):
@@ -47,20 +48,34 @@ for u in response:
     list_stars[u[0] + u[1]] = u[2]
     unique_users[u[0]] = unique_users.get(u[0], 0) + 1
     unique_businesses[u[1]] = unique_businesses.get(u[1], 0) + 1
+user_index = 0
+business_index = 0
 for u in unique_users:
-    list_of_top_users.append(u)
+    list_of_top_users.append({'new_id': user_index, 'id': u})
+    user_index += 1
 for u in unique_businesses:
-    list_of_top_business.append(u)
+    list_of_top_business.append({'new_id': business_index, 'id': u})
+    business_index += 1
 list_of_top_users = sorted(list_of_top_users, key=UsersCmp, reverse=True)[0:1500]
 list_of_top_business = sorted(list_of_top_business, key=BusinessCmp, reverse=True)[0:3000]
+with open("training_user.csv", 'w', encoding='utf-8') as fout:
+    csv_file = csv.writer(fout)
+    csv_file.writerow(['new_id', 'id'])
+    for u in list_of_top_users:
+        csv_file.writerow([u['new_id'], u['id']])
+with open("training_business.csv", 'w', encoding='utf-8') as fout:
+    csv_file = csv.writer(fout)
+    csv_file.writerow(['new_id', 'id'])
+    for u in list_of_top_business:
+        csv_file.writerow([u['new_id'], u['id']])
 user_business_stars = []
 reviews = 0
 for u in list_of_top_users:
     for i in list_of_top_business:
-        stars = list_stars.get(u + i, -1)
+        stars = list_stars.get(u['id'] + i['id'], -1)
         if (stars != -1):
-            print ("{} {} {}".format(u, i, stars))
-            res = [u, i, stars]
+            print ("{} {} {}".format(u['new_id'], i['new_id'], stars))
+            res = [u['new_id'], i['new_id'], stars]
             reviews += 1
             user_business_stars.append(res)
 
@@ -77,45 +92,5 @@ df.to_csv(p, encoding='utf-8')
 
 end = time.time()
 print ("Finished after {} mins and {} seconds".format(int((end - start)/60), int((end - start) % 60)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# for i in sorted_list_reviews:
-#     print ("{} {}".format(i[0], unique_users[i[0]]))
-#     c+=1
-#     if (c == 1000):
-#         break
-# for u in response:
-#     unique_businesses[u[1]] = unique_businesses.get(u[1], 0) + 1
-
-# sorted_list_reviews = sorted(response, key=BusinessCmp, reverse=True)
-# unique_businesses = {}
-# users_10 = []
-# for u in sorted_list_reviews:
-    
-#     unique_businesses[u[1]] = True
-#     users[u[0]] = True
-#     temp = [u[0], u[1], u[2]]
-#     users_10.append(temp)
-#     reviews += 1
-#     if (reviews == 100000):
-#         break
-    
 
 conn.close()
