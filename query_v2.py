@@ -74,15 +74,15 @@ for u in list_of_top_users:
     for i in list_of_top_business:
         stars = list_stars.get(u['id'] + i['id'], -1)
         if (stars != -1):
-            print ("{} {} {}".format(u['new_id'], i['new_id'], stars))
-            res = [u['new_id'], i['new_id'], stars]
+            # print ("{} {} {}".format(u['new_id'], i['new_id'], stars))
+            res = [u['new_id'], i['new_id'], stars, u['id'], i['id']]
             reviews += 1
             user_business_stars.append(res)
 
 print ("Total number of reviews: {}".format(reviews))
 print ("Total unique users: {}".format(len(list_of_top_users)))
 print ("Total unique unique_businesses: {}".format(len(list_of_top_business)))
-columns = ['user_id', 'business_id', 'stars']
+columns = ['user_id', 'business_id', 'stars', 'hash_user_id', 'hash_business_id']
 print ("Saving results in csv file.....")
 df = pd.DataFrame(user_business_stars, columns=columns)
 p = "review.csv"
