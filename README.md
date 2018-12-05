@@ -19,3 +19,7 @@ Pre-process dataset:
 - Now we have:
 	+ a file named review.csv. In this file, there are totally 1500 unique users, 3000 unique businesses and 100000 reviews. 
 	+ a file named user_business_matrix.csv. This file contains the user-business matrix. The first row is the id of businesses, the second column is the id of users
+- First-time training:
+	+ python3 training_with_keras.py
+- Predict with saved model:
+	+ python3 predict_with_model.py
