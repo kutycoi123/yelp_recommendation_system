@@ -13,7 +13,7 @@ Pre-process dataset:
 	python3 make_review_DB.py
 	python3 make_user_DB.py
 	python3 update_review_DB.py #Optional
-	python3 update_user_DB.py	#Optional
+	python3 update_user_DB.py   #Optional
 	python3 make_table.py
 	python3 query_v2.py
 	python3 make_user_business_matrix.py
