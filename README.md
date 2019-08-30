@@ -3,7 +3,7 @@ Team members: Lam Nguyen, Khang Bui, Phan Bui
 
 Pre-process dataset:
  - Download dataset from yelp.ca/dataset
- - Extract the dataset to get 6 json files. We only need file yelp_academic_dataset_user.json and yelp_academic_dataset_review.json so we can delete other files.
+ - Extract the dataset to get 6 json files. We only need file yelp_academic_dataset_user.json and yelp_academic_dataset_review.json so we can delete other files. Put these 2 files inside the src folder.
  - Install python3 (3.x.x version) and pip
  - Install Git bash to run shell script on your Window computer
  - Open Git bash on your clone folder and run these following commands:
