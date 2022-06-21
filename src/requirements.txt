@@ -6,4 +6,4 @@ tensorflow==2.0.0-rc0
 virtualenv==16.1.0
 keras==2.2.4
 matplotlib==3.0.2
-numpy==1.15.4
+numpy==1.22.0
